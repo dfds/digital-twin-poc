@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  iotdevicesimulator:
+    image: iot-device-simulator
+    build:
+      context: .
+      dockerfile: src/IoTDeviceSimulator/Dockerfile
+  iotdevicemanager:
+    image: iot-device-manager
+    build:
+      context: .
+      dockerfile: src/IoTDeviceManagementConsole/Dockerfile

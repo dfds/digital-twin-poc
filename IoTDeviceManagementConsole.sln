@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTDeviceManagementConsole", "src\IoTDeviceManagementConsole\IoTDeviceManagementConsole.csproj", "{BC5A117F-B92D-4088-8E10-97EB78AC634C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{6AEAAD6E-8F70-4C90-8796-D13DB5BC1C3C}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{8C2F88EA-EF65-44EB-84E9-F64D1AAA807B}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\create_service_principal.ps1 = scripts\create_service_principal.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{EDBC66DF-C451-477A-ABC2-0BD606A9A987}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoTDeviceSimulator", "IoTDeviceSimulator", "{82BEE9F6-7CAE-4448-998E-D50F2E402EC4}"
+	ProjectSection(SolutionItems) = preProject
+		src\IoTDeviceSimulator\Dockerfile = src\IoTDeviceSimulator\Dockerfile
+		src\IoTDeviceSimulator\start.sh = src\IoTDeviceSimulator\start.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{7BE483BE-4835-409F-81FF-E56565EEC7DC}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC5A117F-B92D-4088-8E10-97EB78AC634C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC5A117F-B92D-4088-8E10-97EB78AC634C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC5A117F-B92D-4088-8E10-97EB78AC634C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC5A117F-B92D-4088-8E10-97EB78AC634C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4AE553C5-F4C8-405C-807B-E1EC903172B7}
+	EndGlobalSection
+EndGlobal

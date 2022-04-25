@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\toban\\Source\\repos\\DigitalTwinsPoC\\src\\IoTDeviceManagementConsole\\IoTDeviceManagementConsole.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\toban\\Source\\repos\\DigitalTwinsPoC\\src\\IoTDeviceManagementConsole\\IoTDeviceManagementConsole.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\toban\\Source\\repos\\DigitalTwinsPoC\\src\\IoTDeviceManagementConsole\\IoTDeviceManagementConsole.csproj",
+        "projectName": "IoTDeviceManagementConsole",
+        "projectPath": "C:\\Users\\toban\\Source\\repos\\DigitalTwinsPoC\\src\\IoTDeviceManagementConsole\\IoTDeviceManagementConsole.csproj",
+        "packagesPath": "C:\\Users\\toban\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\toban\\Source\\repos\\DigitalTwinsPoC\\src\\IoTDeviceManagementConsole\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\toban\\Source\\repos\\DigitalTwinsPoC\\NuGet.Config",
+          "C:\\Users\\toban\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dfds/_packaging/dfds-devex-shared/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Azure.Devices": {
+              "target": "Package",
+              "version": "[1.37.0, )"
+            },
+            "Microsoft.Azure.Devices.Client": {
+              "target": "Package",
+              "version": "[1.40.0, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.14.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

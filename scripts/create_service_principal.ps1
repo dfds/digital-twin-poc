@@ -1,0 +1,2 @@
+﻿# Create a service principal for a resource group using a preferred name and role
+az ad sp create-for-rbac --name DigitalTwinsPrincipal --role contributor --scopes /subscriptions/57379b8f-ecfd-4752-a832-6bfbad927c99/resourceGroups/DigitalTwinsRG

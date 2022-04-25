@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "IoTDeviceManagementConsole": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
