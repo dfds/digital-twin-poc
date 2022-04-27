@@ -1,9 +1,7 @@
-using DigitalTwins.Management.Application.Extensions;
 using DigitalTwins.Management.Domain.Aggregates;
 using DigitalTwins.Management.Domain.Repositories;
 using DigitalTwins.Management.Domain.Services;
 using DigitalTwins.Management.Domain.ValueObjects;
-using Microsoft.Azure.Devices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +19,7 @@ namespace DigitalTwins.Management.Application.Services
             _hubRepository = hubRepository;
         }
 
-        public async Task<HubRoot> GetHubById(Guid hubId, CancellationToken ct = default)
+        public async Task<HubRoot> GetHubByIdAsync(Guid hubId, CancellationToken ct = default)
         {
             var hubRoot = await _hubRepository.GetAsync(h => h.Id == hubId);
 
@@ -59,27 +57,6 @@ namespace DigitalTwins.Management.Application.Services
             await _hubRepository.UnitOfWork.SaveEntitiesAsync(ct);
 
             return true;
-        }
-
-        public async Task<string> RestartDevice(Guid hubId, string deviceId, CancellationToken ct = default)
-        {
-            var hub = await _hubRepository.GetAsync(hubId, ct);
-            var device = hub.Devices.SingleOrDefault(d => d.DeviceId == deviceId);
-
-            if (device == null)
-            {
-                throw new ApplicationException(string.Format("Device with id: {0} not found in Hub with id: {1}", deviceId, hubId));
-            }
-
-            using var serviceClient = hub.GetServiceClient();
-            var method = new CloudToDeviceMethod("reboot")
-            {
-                ResponseTimeout = TimeSpan.FromSeconds(30)
-            };
-
-            var result = await serviceClient.InvokeDeviceMethodAsync(deviceId, method, ct);
-
-            return result.GetPayloadAsJson();
         }
     }
 }

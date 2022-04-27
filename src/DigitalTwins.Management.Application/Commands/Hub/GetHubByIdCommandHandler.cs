@@ -20,7 +20,7 @@ namespace DigitalTwins.Management.Application.Commands.Hub
 
         public async Task<HubRoot> Handle(GetHubByIdCommand command, CancellationToken cancellationToken = default)
         {
-            var hub = await _managementService.GetHubById(command.HubId, cancellationToken);
+            var hub = await _managementService.GetHubByIdAsync(command.HubId, cancellationToken);
 
             return hub;
         }

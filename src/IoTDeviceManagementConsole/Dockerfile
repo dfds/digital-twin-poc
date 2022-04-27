@@ -34,8 +34,8 @@ WORKDIR /app
 COPY --from=build-env /build/out .
 
 #ENV variable that holds connection string value for Azure IoT Hub
-ENV AZ_IOT_HUB_CONNECTIONSTRING=HostName=DigitalTwinsHub.azure-devices.net;DeviceId=IoTDevice01;SharedAccessKey=IgnDxkrvpFKluKHcfybN5/8T9CYdHZ3kNDPmwToQl+M=
-ENV AZ_IOT_DEVICE_ID=IoTDevice01
+ENV AZ_IOT_HUB_CONNECTIONSTRING=""
+ENV AZ_IOT_DEVICE_ID=""
 
 EXPOSE 8883
 
