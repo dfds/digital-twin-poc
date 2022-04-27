@@ -1,0 +1,31 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  creationTimestamp: null
+  name: digitaltwins-management-host-api-ingress
+  namespace: developerautomation-xavgy
+spec:
+  entryPoints: []
+  routes:
+  - kind: Rule
+    match: Host(`api.hellman.oxygen.dfds.cloud`) && PathPrefix(`/digitaltwins`)
+    middlewares:
+    - name: api.hellman.oxygen.dfds.cloud-digitaltwins
+      namespace: developerautomation-xavgy
+    priority: 0
+    services:
+    - kind: Service
+      name: digitaltwins-management-host-api-service
+      namespace: developerautomation-xavgy
+      port: external
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  creationTimestamp: null
+  name: api.hellman.oxygen.dfds.cloud-digitaltwins
+  namespace: developerautomation-xavgy
+spec:
+  stripPrefix:
+    prefixes:
+    - /digitaltwins

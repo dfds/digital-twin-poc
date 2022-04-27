@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: digitaltwins-management-host-api
+  namespace: developerautomation-xavgy
+  labels:
+    project: developerautomation
+    department: cloudengineering
+    component: digitaltwins-management
+    app: digitaltwins-management-host-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: digitaltwins-management-host-api
+  template:
+    metadata:
+      labels:
+        project: developerautomation
+        department: cloudengineering
+        app: digitaltwins-management-host-api
+        backstage.io/kubernetes-id: digitaltwins-management-host-api
+    spec:
+      priorityClassName: selfservice
+      containers:
+      - name: digitaltwins-management-host-api
+        image: digitaltwins-management-host-api:latest
+        ports:
+        - containerPort: 54323
+          name: web
+        - containerPort: 8080
+          name: metrics
+        env:
+          - name: Kafka__Configuration__sasl.username
+            valueFrom:
+              secretKeyRef:
+                name: digitaltwins-management-kafka-credentials
+                key: username
+          - name: Kafka__Configuration__sasl.password
+            valueFrom:
+              secretKeyRef:
+                name: digitaltwins-management-kafka-credentials
+                key: password
+          - name: ConnectionStrings__ApplicationContext_Host
+            valueFrom:
+              secretKeyRef:
+                name: digitaltwins-management-rdspostgresql-conn
+                key: endpoint
+          - name: ConnectionStrings__ApplicationContext_Port
+            valueFrom:
+              secretKeyRef:
+                name: digitaltwins-management-rdspostgresql-conn
+                key: port
+          - name: ConnectionStrings__ApplicationContext_User
+            valueFrom:
+              secretKeyRef:
+                name: digitaltwins-management-rdspostgresql-conn
+                key: username
+          - name: ConnectionStrings__ApplicationContext_Password
+            valueFrom:
+              secretKeyRef:
+                name: digitaltwins-management-rdspostgresql-conn
+                key: password
+          - name: ConnectionStrings__ApplicationContext
+            value: "User ID=$(ConnectionStrings__ApplicationContext_User);Password=$(ConnectionStrings__ApplicationContext_Password);Host=$(ConnectionStrings__ApplicationContext_Host);Port=$(ConnectionStrings__ApplicationContext_Port);Database=postgres"
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "100m"
+          limits:
+            memory: "400Mi"
+            cpu: "200m"

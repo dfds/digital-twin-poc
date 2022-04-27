@@ -1,0 +1,27 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: digitaltwins-management-rds
+  namespace: developerautomation-xavgy
+  annotations:
+    crossplane.io/external-name: digitaltwins-management-rds
+  labels:
+    department: cloudengineering
+    project: developerautomation
+spec:
+  providerConfigRef:
+    name: developerautomation-xavgy-provider-config
+  forProvider:
+    region: eu-west-1
+    dbInstanceClass: db.t2.small
+    masterUsername: masteruser
+    allocatedStorage: 20
+    engine: postgres
+    engineVersion: "11"
+    skipFinalSnapshotBeforeDeletion: true
+    vpcSecurityGroupIDSelector:
+      matchLabels:
+        rdsinstance: digitaltwins-management-rds
+  writeConnectionSecretToRef:
+    namespace: developerautomation-xavgy
+    name: digitaltwins-management-rdspostgresql-conn

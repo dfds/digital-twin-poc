@@ -16,6 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{EDBC66DF-C451-477A-ABC2-0BD606A9A987}"
 	ProjectSection(SolutionItems) = preProject
 		k8s\digitaltwins-device-simulator.yaml = k8s\digitaltwins-device-simulator.yaml
+		k8s\digitaltwins-management-host-api-ingress-route.yaml = k8s\digitaltwins-management-host-api-ingress-route.yaml
+		k8s\digitaltwins-management-host-api-service.yaml = k8s\digitaltwins-management-host-api-service.yaml
+		k8s\digitaltwins-management-host-api.yaml = k8s\digitaltwins-management-host-api.yaml
+		k8s\digitaltwins-management-kafka-credentials.yaml = k8s\digitaltwins-management-kafka-credentials.yaml
+		k8s\digitaltwins-management-rds-security-group.yaml = k8s\digitaltwins-management-rds-security-group.yaml
+		k8s\digitaltwins-management-rds.yaml = k8s\digitaltwins-management-rds.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DigitalTwins.Device.Simulator", "DigitalTwins.Device.Simulator", "{82BEE9F6-7CAE-4448-998E-D50F2E402EC4}"
