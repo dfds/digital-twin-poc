@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace DigitalTwins.Management.Domain.ValueObjects
 {
-    public sealed class Device : ValueObject
+    public sealed class DeviceInfo : ValueObject
     {
         [Required]
         [JsonPropertyName("deviceId")]
@@ -16,7 +16,7 @@ namespace DigitalTwins.Management.Domain.ValueObjects
         public string ConnectionString { get; init; }
 
         [JsonConstructor]
-        public Device(string deviceId, string connectionString)
+        public DeviceInfo(string deviceId, string connectionString)
         {
             DeviceId = deviceId;
             ConnectionString = connectionString;

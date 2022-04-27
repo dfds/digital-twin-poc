@@ -26,9 +26,9 @@ namespace DigitalTwins.Management.Application.Services
             return hubRoot.SingleOrDefault();
         }
 
-        public async Task<HubRoot> AddHubAsync(string connectionString, IEnumerable<Device> devices = null, CancellationToken ct = default)
+        public async Task<HubRoot> AddHubAsync(string name, string connectionString, IEnumerable<DeviceInfo> devices = null, CancellationToken ct = default)
         {
-            var hubRoot = new HubRoot(connectionString);
+            var hubRoot = new HubRoot(name, connectionString);
 
             hubRoot.AddDevice(devices);
 

@@ -8,9 +8,9 @@ namespace DigitalTwins.Management.Domain.Events.Hub
     {
         public Guid HubId { get; private set; }
 
-        public Device Device { get; private set; }
+        public DeviceInfo Device { get; private set; }
 
-        public DeviceAddedEvent(Guid hubId, Device device)
+        public DeviceAddedEvent(Guid hubId, DeviceInfo device)
         {
             HubId = hubId;
             Device = device;

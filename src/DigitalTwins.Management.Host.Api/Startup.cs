@@ -1,5 +1,5 @@
 using CloudEngineering.CodeOps.Security.Policies;
-using CostJanitor.Application;
+using DigitalTwins.Management.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +10,7 @@ using Microsoft.OpenApi.Models;
 using Saunter;
 using Saunter.AsyncApiSchema.v2;
 
-namespace CostJanitor.Host.Api
+namespace DigitalTwins.Management.Host.Api
 {
     public class Startup
     {
@@ -41,7 +41,7 @@ namespace CostJanitor.Host.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CostJanitor.Host.Api v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DigitalTwins.Management.Host.Api v1"));
 
                 app.UseEndpoints(endpoints =>
                 {
@@ -76,7 +76,7 @@ namespace CostJanitor.Host.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "CostJanitor.Host.Api",
+                    Title = "DigitalTwins.Management.Host.Api",
                     Version = "v1",
                     License = new OpenApiLicense 
                     {
@@ -89,7 +89,7 @@ namespace CostJanitor.Host.Api
                         Email = "ITBuildSourceDevEx@dfds.com",
                         Url = new System.Uri("https://teams.microsoft.com/l/team/19%3a908baef5ad284b7faa5d806738a1098a%40thread.tacv2/conversations?groupId=2830ad5b-41bc-4f38-a89e-34f5ceb33cd5&tenantId=73a99466-ad05-4221-9f90-e7142aa2f6c1")
                     },
-                    Description = "CostJanitor is responsible for tracking capability AWS cloud expenses"
+                    Description = "DigitalTwins.Management.Host.Api"
                 });
             });
 
@@ -99,7 +99,7 @@ namespace CostJanitor.Host.Api
 
                 options.AsyncApi = new AsyncApiDocument
                 {
-                    Info = new Info("CostJanitor.Host.Api", "1.0.0")
+                    Info = new Info("DigitalTwins.Management.Host.Api", "1.0.0")
                     {
                         Contact = new Contact 
                         {
@@ -107,7 +107,7 @@ namespace CostJanitor.Host.Api
                             Email = "ITBuildSourceDevEx@dfds.com",
                             Url = "https://teams.microsoft.com/l/team/19%3a908baef5ad284b7faa5d806738a1098a%40thread.tacv2/conversations?groupId=2830ad5b-41bc-4f38-a89e-34f5ceb33cd5&tenantId=73a99466-ad05-4221-9f90-e7142aa2f6c1"
                         },
-                        Description = "CostJanitor is responsible for tracking capability AWS cloud expenses",
+                        Description = "DigitalTwins.Management.Host.Api",
                         License = new License("MIT License")
                         {
                             Url = "https://github.com/dfds/cost-janitor-2/blob/master/LICENSE"
@@ -117,7 +117,7 @@ namespace CostJanitor.Host.Api
 
                 options.Middleware.Route = "/asyncapi/asyncapi.json";
                 options.Middleware.UiBaseRoute = "/asyncapi/ui/";
-                options.Middleware.UiTitle = "CostJanitor.Host.Api AsyncAPI Documentation";
+                options.Middleware.UiTitle = "DigitalTwins.Management.Host.Api AsyncAPI Documentation";
             });
 
             services.AddSecurityPolicies();

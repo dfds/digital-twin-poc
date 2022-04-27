@@ -11,6 +11,7 @@ namespace CostJanitor.Infrastructure.EntityFramework.Configurations
         {
             builder.Ignore(v => v.DomainEvents);
             builder.Property(v => v.Id).IsRequired();
+            builder.Property(v => v.Name);
             builder.Property(v => v.ConnectionString);
             builder.HasKey(v => v.Id);
             builder.ToTable("Hubs");

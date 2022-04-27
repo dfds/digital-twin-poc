@@ -10,24 +10,28 @@ namespace DigitalTwins.Management.Domain.Aggregates
 {
     public sealed class HubRoot : Entity<Guid>, IAggregateRoot
     {
-        private readonly List<Device> _devices;
+        private readonly List<DeviceInfo> _devices;
+        private readonly string _name;
         private readonly string _connectionString;
 
-        public IEnumerable<Device> Devices => _devices.AsReadOnly();
+        public IEnumerable<DeviceInfo> Devices => _devices.AsReadOnly();
 
         public string ConnectionString => _connectionString;
 
-        public HubRoot(string connectionString)
-        {
-            _connectionString = connectionString;
-            _devices = new List<Device>();
+        public string Name => _name;
 
-            var evt = new HubInitializedEvent(this);
+        public HubRoot(string name, string connectionString)
+        {
+            _name = name;
+            _connectionString = connectionString;
+            _devices = new List<DeviceInfo>();
+
+            var evt = new HubCreatedEvent(this);
 
             AddDomainEvent(evt);
         }
 
-        public void AddDevice(Device device)
+        public void AddDevice(DeviceInfo device)
         {
             _devices.Add(device);
 
@@ -36,7 +40,7 @@ namespace DigitalTwins.Management.Domain.Aggregates
             AddDomainEvent(evt);
         }
 
-        public void AddDevice(IEnumerable<Device> devices)
+        public void AddDevice(IEnumerable<DeviceInfo> devices)
         {
             foreach (var device in devices)
             { 
@@ -44,7 +48,7 @@ namespace DigitalTwins.Management.Domain.Aggregates
             }
         }
 
-        public void RemoveDevice(Device device)
+        public void RemoveDevice(DeviceInfo device)
         {
             _devices.Remove(device);
 
@@ -57,9 +61,14 @@ namespace DigitalTwins.Management.Domain.Aggregates
         {
             var result = new List<ValidationResult>();
 
+            if (string.IsNullOrEmpty(_name))
+            {
+                result.Add(new ValidationResult("Value cannot be null or empty", new []{ "Name" })) ;
+            }
+
             if (string.IsNullOrEmpty(_connectionString))
             {
-                result.Add(new ValidationResult("ConnectionString is empty", new []{ "ConnectionString" })) ;
+                result.Add(new ValidationResult("Value cannot be null or empty", new[] { "ConnectionString" }));
             }
 
             return result;

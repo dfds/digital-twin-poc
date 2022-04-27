@@ -3,11 +3,11 @@ using DigitalTwins.Management.Domain.Aggregates;
 
 namespace DigitalTwins.Management.Domain.Events.Hub
 {
-    public sealed class HubInitializedEvent : IDomainEvent
+    public sealed class HubCreatedEvent : IDomainEvent
     {
         public HubRoot Hub { get; private set; }
 
-        public HubInitializedEvent(HubRoot hub)
+        public HubCreatedEvent(HubRoot hub)
         {
             Hub = hub;
         }

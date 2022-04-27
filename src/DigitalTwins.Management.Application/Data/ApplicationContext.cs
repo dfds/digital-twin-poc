@@ -11,7 +11,7 @@ namespace DigitalTwins.Management.Application.Data
 {
     public class ApplicationContext : EntityContext
     {
-        public virtual DbSet<Device> Devices { get; set; }
+        public virtual DbSet<DeviceInfo> Devices { get; set; }
 
         public virtual DbSet<HubRoot> Hubs { get; set; }
 

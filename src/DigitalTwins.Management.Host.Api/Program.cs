@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace CostJanitor.Host.Api
+namespace DigitalTwins.Management.Host.Api
 {
     public class Program
     {

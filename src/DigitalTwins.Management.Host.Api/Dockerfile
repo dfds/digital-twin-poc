@@ -19,13 +19,13 @@ RUN wget -qO- https://raw.githubusercontent.com/Microsoft/artifacts-credprovider
 RUN sed -i "s|</configuration>|<packageSourceCredentials><dfds-devex-shared><add key=\"Username\" value=\"PAT\" /><add key=\"ClearTextPassword\" value=\"${PAT}\" /></dfds-devex-shared></packageSourceCredentials></configuration>|" nuget.config
 
 #Set workdir to current project folder
-WORKDIR /build/src/CostJanitor.Host.Api
+WORKDIR /build/src/DigitalTwins.Management.Host.Api
 
 #Restore csproj packages.
 RUN dotnet restore
 
 #Compile source code using standard Release profile
-RUN dotnet publish -c Release -o /build/out CostJanitor.Host.Api.csproj
+RUN dotnet publish -c Release -o /build/out DigitalTwins.Management.Host.Api.csproj
 
 #Setup final container images.
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
@@ -39,4 +39,4 @@ ENV ASPNETCORE_URLS="http://*:54323"
 COPY --from=build-env /build/out .
 
 #Run dotnet executable
-ENTRYPOINT ["dotnet", "CostJanitor.Host.Api.dll"]
+ENTRYPOINT ["dotnet", "DigitalTwins.Management.Host.Api.dll"]

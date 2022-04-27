@@ -28,6 +28,9 @@ namespace Data.Migrations
                     b.Property<string>("ConnectionString")
                         .HasColumnType("text");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("Hubs");
@@ -35,7 +38,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("DigitalTwins.Management.Domain.Aggregates.HubRoot", b =>
                 {
-                    b.OwnsMany("DigitalTwins.Management.Domain.ValueObjects.Device", "Devices", b1 =>
+                    b.OwnsMany("DigitalTwins.Management.Domain.ValueObjects.DeviceInfo", "Devices", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
