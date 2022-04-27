@@ -20,7 +20,6 @@ services:
     image: digitaltwins-management-host-api
     ports:
       - "5000:5000"
-      - "5001:5001"
     build:
       context: .
       dockerfile: src/DigitalTwins.Management.Host.Api/Dockerfile
