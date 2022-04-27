@@ -1,6 +1,13 @@
 version: '3.7'
 
 services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=local"
   iotdevicesimulator:
     image: iot-device-simulator
     build:

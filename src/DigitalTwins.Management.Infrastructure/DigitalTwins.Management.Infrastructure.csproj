@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CloudEngineering.CodeOps.Infrastructure.EntityFramework" Version="1.0.0-CI-20211005-103557" />
+      <PackageReference Include="CloudEngineering.CodeOps.Infrastructure.Kafka" Version="1.0.0-CI-20211005-103557" />
+      <PackageReference Include="CloudEngineering.CodeOps.Security.Policies" Version="1.0.0-CI-20211005-103557" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DigitalTwins.Management.Domain\DigitalTwins.Management.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

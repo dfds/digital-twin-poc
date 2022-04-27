@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <UserSecretsId>3a610dcc-c85d-41e2-8826-cea3c2b7eea3</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Identity.Web" Version="1.17.0" />
+        <PackageReference Include="Saunter" Version="0.8.0" />
+        <PackageReference Include="Sentry.AspNetCore" Version="3.9.4" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CostJanitor.Application\CostJanitor.Application.csproj" />
+    </ItemGroup>
+
+</Project>
