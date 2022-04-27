@@ -2,6 +2,7 @@ using DigitalTwins.Management.Application;
 using DigitalTwins.Management.Application.Commands.Hub;
 using DigitalTwins.Management.Domain.Aggregates;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace DigitalTwins.Management.Host.Api.Controllers
@@ -25,8 +26,10 @@ namespace DigitalTwins.Management.Host.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<HubRoot> Read(GetHubByIdCommand command)
+        public async Task<HubRoot> GetHubById(Guid hubId)
         {
+            var command = new GetHubByIdCommand(hubId);
+
             return await _applicationFacade.Execute(command);
         }
 

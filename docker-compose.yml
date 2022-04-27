@@ -8,16 +8,19 @@ services:
     environment:
       - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=local"
-  digitaltwins.device.simulator:
-    image: digitaltwins-device-simulator
-    build:
-      context: .
-      dockerfile: src/DigitalTwins.Device.Simulator/Dockerfile
-    environment:
-      - "AZ_IOT_DEVICE_ID=IoTDevice01"
-      - "AZ_IOT_HUB_NAME=DigitalTwinsHub"
+  #digitaltwins.device.simulator:
+  #  image: digitaltwins-device-simulator
+  #  build:
+  #    context: .
+  #    dockerfile: src/DigitalTwins.Device.Simulator/Dockerfile
+  #  environment:
+  #    - "AZ_IOT_DEVICE_ID=IoTDevice01"
+  #    - "AZ_IOT_HUB_NAME=DigitalTwinsHub"
   digitaltwins.management.host.api:
     image: digitaltwins-management-host-api
+    ports:
+      - "5000:5000"
+      - "5001:5001"
     build:
       context: .
       dockerfile: src/DigitalTwins.Management.Host.Api/Dockerfile

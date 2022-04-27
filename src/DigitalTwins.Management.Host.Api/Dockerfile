@@ -27,13 +27,18 @@ RUN dotnet restore
 #Compile source code using standard Release profile
 RUN dotnet publish -c Release -o /build/out DigitalTwins.Management.Host.Api.csproj
 
+#Generate cert for https
+#RUN dotnet dev-certs https --export-path /build/out/DigitalTwins.Management.Host.Api.pfx --password $PAT
+#RUN dotnet dev-certs https --trust
+
 #Setup final container images.
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
 
-EXPOSE 54323
+EXPOSE 5000
+#EXPOSE 5001
 
-ENV ASPNETCORE_URLS="http://*:54323"
+ENV ASPNETCORE_URLS="http://localhost:5000"
 
 #Copy binaries from publish container to final container
 COPY --from=build-env /build/out .
