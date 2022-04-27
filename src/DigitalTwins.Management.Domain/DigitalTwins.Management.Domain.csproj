@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CloudEngineering.CodeOps.Abstractions" Version="1.0.0-CI-20211005-103557" />
+      <PackageReference Include="CloudEngineering.CodeOps.Abstractions" Version="1.0.0-CI-20220427-205554" />
       <PackageReference Include="System.Linq" Version="4.3.0" />
       <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
     </ItemGroup>

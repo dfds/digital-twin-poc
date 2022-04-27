@@ -1,23 +1,22 @@
 using CloudEngineering.CodeOps.Abstractions.Commands;
-using DigitalTwins.Management.Domain.Aggregates;
-using DigitalTwins.Management.Domain.ValueObjects;
+using System;
 using System.Text.Json.Serialization;
 
 namespace DigitalTwins.Management.Application.Commands.Hub
 {
     public sealed class RestartDeviceCommand : ICommand<string>
     {
-        [JsonPropertyName("hub")]
-        public HubRoot Hub { get; init; }
+        [JsonPropertyName("hubId")]
+        public Guid HubId { get; init; }
 
-        [JsonPropertyName("deviceInfo")]
-        public DeviceInfo Device { get; init; }
+        [JsonPropertyName("deviceId")]
+        public string DeviceId { get; init; }
 
         [JsonConstructor]
-        public RestartDeviceCommand(HubRoot hub, DeviceInfo device)
+        public RestartDeviceCommand(Guid hubId, string deviceId)
         {
-            Hub = hub;
-            Device = device;
+            HubId = hubId;
+            DeviceId = deviceId;
         }
     }
 }

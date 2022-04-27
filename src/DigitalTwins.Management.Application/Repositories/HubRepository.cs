@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DigitalTwins.Management.Application.Repositories
@@ -17,7 +18,7 @@ namespace DigitalTwins.Management.Application.Repositories
         {
         }
 
-        public override async Task<IEnumerable<HubRoot>> GetAsync(Expression<Func<HubRoot, bool>> filter)
+        public override async Task<IEnumerable<HubRoot>> GetAsync(Expression<Func<HubRoot, bool>> filter, CancellationToken ct = default)
         {
             return await Task.Factory.StartNew(() =>
             {
@@ -26,12 +27,12 @@ namespace DigitalTwins.Management.Application.Repositories
                                             .Where(filter)
                                             .Include(i => i.Devices)
                                             .AsEnumerable();
-            });
+            }, ct);
         }
 
-        public async Task<HubRoot> GetAsync(Guid hubId)
+        public async Task<HubRoot> GetAsync(Guid hubId, CancellationToken ct = default)
         {
-            var hubRoot = await _context.Hubs.FindAsync(hubId);
+            var hubRoot = await _context.Hubs.FindAsync(new object[] { hubId }, cancellationToken: ct);
 
             if (hubRoot != null)
             {
@@ -39,7 +40,7 @@ namespace DigitalTwins.Management.Application.Repositories
 
                 if (entry != null)
                 {
-                    await entry.Reference(i => i.Devices).LoadAsync();
+                    await entry.Reference(i => i.Devices).LoadAsync(ct);
                 }
             }
 

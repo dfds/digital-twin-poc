@@ -17,5 +17,7 @@ namespace DigitalTwins.Management.Domain.Services
         Task<HubRoot> UpdateHubAsync(HubRoot hub, CancellationToken ct = default);
 
         Task<bool> DeleteHubAsync(Guid hubId, CancellationToken ct = default);
+
+        Task<string> RestartDevice(Guid hubId, string deviceId, CancellationToken ct = default);
     }
 }
