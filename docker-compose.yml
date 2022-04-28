@@ -8,18 +8,28 @@ services:
     environment:
       - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=local"
-  #digitaltwins.device.simulator:
-  #  image: digitaltwins-device-simulator
-  #  build:
-  #    context: .
-  #    dockerfile: src/DigitalTwins.Device.Simulator/Dockerfile
-  #  environment:
-  #    - "AZ_IOT_DEVICE_ID=IoTDevice01"
-  #    - "AZ_IOT_HUB_NAME=DigitalTwinsHub"
+  digitaltwins.device.simulator:
+    image: digitaltwins-device-simulator
+    build:
+      context: .
+      dockerfile: src/DigitalTwins.Device.Simulator/Dockerfile
+    environment:
+      - "AZ_IOT_DEVICE_ID=IoTDevice01"
+      - "AZ_IOT_HUB_NAME=DigitalTwinsHub"
   digitaltwins.management.host.api:
     image: digitaltwins-management-host-api
-    ports:
-      - "5000:5000"
     build:
       context: .
       dockerfile: src/DigitalTwins.Management.Host.Api/Dockerfile
+    ports:
+      - "8000:80"
+      - "8001:443"
+    environment:
+     - "ASPNETCORE_ENVIRONMENT=Development"
+     - "ASPNETCORE_URLS=https://+;http://+"
+     - "ASPNETCORE_HTTPS_PORT=443"
+     - "ASPNETCORE_HTTP_PORT=80"
+     - "ASPNETCORE_Kestrel__Certificates__Default__Password=${HTTPS_SELFSIGNED_CERT_PASSWORD}"
+     - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
+    volumes:
+     - ${USERPROFILE}\.aspnet\https:/https/

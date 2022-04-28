@@ -31,10 +31,6 @@ RUN dotnet publish -c Release -o /build/out DigitalTwins.Management.Host.Api.csp
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
 
-EXPOSE 5000
-
-ENV ASPNETCORE_URLS="http://localhost:5000"
-
 #Copy binaries from publish container to final container
 COPY --from=build-env /build/out .
 
