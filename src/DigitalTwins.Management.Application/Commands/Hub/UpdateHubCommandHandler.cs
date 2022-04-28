@@ -11,18 +11,16 @@ namespace DigitalTwins.Management.Application.Commands.Hub
 {
     public sealed class UpdateHubCommandHandler : ICommandHandler<UpdateHubCommand, HubRoot>, ICommandHandler<UpdateHubCommand, IAggregateRoot>
     {
-        private readonly IManagementService _managementService;
+        private readonly IHubService _hubService;
 
-        public UpdateHubCommandHandler(IManagementService managementService)
+        public UpdateHubCommandHandler(IHubService hubService)
         {
-            _managementService = managementService ?? throw new ArgumentNullException(nameof(managementService));
+            _hubService = hubService ?? throw new ArgumentNullException(nameof(hubService));
         }
 
         public async Task<HubRoot> Handle(UpdateHubCommand command, CancellationToken cancellationToken = default)
         {
-            var hub = await _managementService.UpdateHubAsync(command.Hub, cancellationToken);
-
-            return hub;
+            return await _hubService.UpdateHubAsync(command.Hub, cancellationToken);
         }
 
         async Task<IAggregateRoot> IRequestHandler<UpdateHubCommand, IAggregateRoot>.Handle(UpdateHubCommand request, CancellationToken cancellationToken)

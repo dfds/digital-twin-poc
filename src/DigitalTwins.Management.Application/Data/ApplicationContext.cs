@@ -1,7 +1,6 @@
 ﻿using CloudEngineering.CodeOps.Abstractions.Data;
 using CloudEngineering.CodeOps.Infrastructure.EntityFramework;
 using DigitalTwins.Management.Domain.Aggregates;
-using DigitalTwins.Management.Domain.ValueObjects;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +10,7 @@ namespace DigitalTwins.Management.Application.Data
 {
     public class ApplicationContext : EntityContext
     {
-        public virtual DbSet<DeviceInfo> Devices { get; set; }
+        public virtual DbSet<DeviceRoot> Devices { get; set; }
 
         public virtual DbSet<HubRoot> Hubs { get; set; }
 

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DigitalTwins.Management.Domain.Repositories
 {
-    public interface IHubRepository : IRepository<HubRoot>
+    public interface IDeviceRepository : IRepository<DeviceRoot>
     {
-        Task<HubRoot> GetAsync(Guid hubId, CancellationToken cancellationToken = default);
+        Task<DeviceRoot> GetAsync(Guid deviceId, CancellationToken cancellationToken = default);
     }
 }

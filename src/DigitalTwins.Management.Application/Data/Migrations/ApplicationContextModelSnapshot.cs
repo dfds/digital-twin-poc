@@ -19,6 +19,26 @@ namespace Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("DigitalTwins.Management.Domain.Aggregates.DeviceRoot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ConnectionString")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeviceIdentifier")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeviceIdentifier")
+                        .IsUnique();
+
+                    b.ToTable("Devices");
+                });
+
             modelBuilder.Entity("DigitalTwins.Management.Domain.Aggregates.HubRoot", b =>
                 {
                     b.Property<Guid>("Id")
@@ -38,7 +58,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("DigitalTwins.Management.Domain.Aggregates.HubRoot", b =>
                 {
-                    b.OwnsMany("DigitalTwins.Management.Domain.ValueObjects.DeviceInfo", "Devices", b1 =>
+                    b.OwnsMany("DigitalTwins.Management.Domain.ValueObjects.DeviceRegistration", "DeviceRegistrations", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
@@ -48,7 +68,7 @@ namespace Data.Migrations
                                 .IsRequired()
                                 .HasColumnType("text");
 
-                            b1.Property<string>("DeviceId")
+                            b1.Property<string>("DeviceIdentifier")
                                 .IsRequired()
                                 .HasColumnType("text");
 
@@ -57,15 +77,18 @@ namespace Data.Migrations
 
                             b1.HasKey("Id");
 
+                            b1.HasIndex("DeviceIdentifier")
+                                .IsUnique();
+
                             b1.HasIndex("OwnerId");
 
-                            b1.ToTable("Devices");
+                            b1.ToTable("DeviceRegistration");
 
                             b1.WithOwner()
                                 .HasForeignKey("OwnerId");
                         });
 
-                    b.Navigation("Devices");
+                    b.Navigation("DeviceRegistrations");
                 });
 #pragma warning restore 612, 618
         }

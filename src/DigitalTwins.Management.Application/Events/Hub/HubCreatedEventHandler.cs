@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CostJanitor.Application.Events.Report
 {
-    public sealed class HubCreatedEventHandler : IEventHandler<HubCreatedEvent>
+    public sealed class HubCreatedEventHandler : IEventHandler<DeviceCreatedEvent>
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
@@ -18,7 +18,7 @@ namespace CostJanitor.Application.Events.Report
             _mediator = mediator;
         }
 
-        public async Task Handle(HubCreatedEvent @event, CancellationToken cancellationToken = default)
+        public async Task Handle(DeviceCreatedEvent @event, CancellationToken cancellationToken = default)
         { 
             //TODO: Verify mapping
             var integrationEvent = _mapper.Map<HubCreatedIntegrationEvent>(@event);

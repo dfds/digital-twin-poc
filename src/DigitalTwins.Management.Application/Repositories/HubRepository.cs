@@ -25,7 +25,7 @@ namespace DigitalTwins.Management.Application.Repositories
                 return _context.Hubs.AsQueryable()
                                             .AsNoTracking()
                                             .Where(filter)
-                                            .Include(i => i.Devices)
+                                            .Include(i => i.DeviceRegistrations)
                                             .AsEnumerable();
             }, ct);
         }
@@ -40,7 +40,7 @@ namespace DigitalTwins.Management.Application.Repositories
 
                 if (entry != null)
                 {
-                    await entry.Reference(i => i.Devices).LoadAsync(ct);
+                    await entry.Reference(i => i.DeviceRegistrations).LoadAsync(ct);
                 }
             }
 

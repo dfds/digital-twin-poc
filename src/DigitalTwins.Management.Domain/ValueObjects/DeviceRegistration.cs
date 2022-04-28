@@ -5,26 +5,26 @@ using System.Text.Json.Serialization;
 
 namespace DigitalTwins.Management.Domain.ValueObjects
 {
-    public sealed class DeviceInfo : ValueObject
+    public sealed class DeviceRegistration : ValueObject
     {
         [Required]
-        [JsonPropertyName("deviceId")]
-        public string DeviceId { get; init; }
+        [JsonPropertyName("deviceIdentifier")]
+        public string DeviceIdentifier { get; init; }
 
         [Required]
         [JsonPropertyName("connectionString")]
         public string ConnectionString { get; init; }
 
         [JsonConstructor]
-        public DeviceInfo(string deviceId, string connectionString)
+        public DeviceRegistration(string deviceIdentifier, string connectionString)
         {
-            DeviceId = deviceId;
+            DeviceIdentifier = deviceIdentifier;
             ConnectionString = connectionString;
         }
 
         protected override IEnumerable<object> GetAtomicValues()
         {
-            yield return DeviceId;
+            yield return DeviceIdentifier;
             yield return ConnectionString;
         }
     }

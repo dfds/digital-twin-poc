@@ -11,18 +11,16 @@ namespace DigitalTwins.Management.Application.Commands.Hub
 {
     public sealed class GetHubByIdCommandHandler : ICommandHandler<GetHubByIdCommand, HubRoot>, ICommandHandler<GetHubByIdCommand, IAggregateRoot>
     {
-        private readonly IManagementService _managementService;
+        private readonly IHubService _hubService;
 
-        public GetHubByIdCommandHandler(IManagementService managementService)
+        public GetHubByIdCommandHandler(IHubService hubService)
         {
-            _managementService = managementService ?? throw new ArgumentNullException(nameof(managementService));
+            _hubService = hubService ?? throw new ArgumentNullException(nameof(hubService));
         }
 
         public async Task<HubRoot> Handle(GetHubByIdCommand command, CancellationToken cancellationToken = default)
         {
-            var hub = await _managementService.GetHubByIdAsync(command.HubId, cancellationToken);
-
-            return hub;
+            return await _hubService.GetHubByIdAsync(command.HubId, cancellationToken);
         }
 
         async Task<IAggregateRoot> IRequestHandler<GetHubByIdCommand, IAggregateRoot>.Handle(GetHubByIdCommand request, CancellationToken cancellationToken)

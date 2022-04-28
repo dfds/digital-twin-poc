@@ -11,18 +11,16 @@ namespace DigitalTwins.Management.Application.Commands.Hub
 {
     public sealed class CreateHubCommandHandler : ICommandHandler<CreateHubCommand, HubRoot>, ICommandHandler<CreateHubCommand, IAggregateRoot>
     {
-        private readonly IManagementService _managementService;
+        private readonly IHubService _hubService;
 
-        public CreateHubCommandHandler(IManagementService managementService)
+        public CreateHubCommandHandler(IHubService hubService)
         {
-            _managementService = managementService ?? throw new ArgumentNullException(nameof(managementService));
+            _hubService = hubService ?? throw new ArgumentNullException(nameof(hubService));
         }
 
         public async Task<HubRoot> Handle(CreateHubCommand command, CancellationToken cancellationToken = default)
         {
-            var report = await _managementService.AddHubAsync(command.Name, command.ConnectionString, command.Devices, cancellationToken);
-
-            return report;
+            return await _hubService.AddHubAsync(command.Name, command.ConnectionString, command.Devices, cancellationToken);
         }
 
         async Task<IAggregateRoot> IRequestHandler<CreateHubCommand, IAggregateRoot>.Handle(CreateHubCommand request, CancellationToken cancellationToken)

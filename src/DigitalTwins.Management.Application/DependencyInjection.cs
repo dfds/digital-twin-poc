@@ -75,11 +75,15 @@ namespace DigitalTwins.Management.Application
         {
             services.AddTransient<IRepository<HubRoot>, HubRepository>();
             services.AddTransient<IHubRepository, HubRepository>();
+
+            services.AddTransient<IRepository<DeviceRoot>, DeviceRepository>();
+            services.AddTransient<IDeviceRepository, DeviceRepository>();
         }
 
         private static void AddServices(this IServiceCollection services)
         {
-            services.AddTransient<IManagementService, ManagementService>();
+            services.AddTransient<IHubService, HubService>();
+            services.AddTransient<IDeviceService, DeviceService>();
         }
 
         private static void AddFacade(this IServiceCollection services)

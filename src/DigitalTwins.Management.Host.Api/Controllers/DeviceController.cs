@@ -1,6 +1,8 @@
 using DigitalTwins.Management.Application;
-using DigitalTwins.Management.Application.Commands.Hub;
+using DigitalTwins.Management.Application.Commands.Device;
+using DigitalTwins.Management.Domain.Aggregates;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace DigitalTwins.Management.Host.Api.Controllers
@@ -17,8 +19,28 @@ namespace DigitalTwins.Management.Host.Api.Controllers
             _applicationFacade = applicationFacade;
         }
 
-        [HttpGet("restart")]
-        public async Task<string> Restart(RestartDeviceCommand command)
+        [HttpPost]
+        public async Task<DeviceRoot> Create(CreateDeviceCommand command)
+        {
+            return await _applicationFacade.Execute(command);
+        }
+
+        [HttpGet]
+        public async Task<DeviceRoot> Read(Guid deviceId)
+        {
+            var command = new GetDeviceByIdCommand(deviceId);
+
+            return await _applicationFacade.Execute(command);
+        }
+
+        [HttpPut]
+        public async Task<DeviceRoot> Update(UpdateDeviceCommand command)
+        {
+            return await _applicationFacade.Execute(command);
+        }
+
+        [HttpDelete]
+        public async Task<bool> Delete(DeleteDeviceCommand command)
         {
             return await _applicationFacade.Execute(command);
         }

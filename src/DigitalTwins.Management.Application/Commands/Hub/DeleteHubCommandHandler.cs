@@ -8,18 +8,16 @@ namespace DigitalTwins.Management.Application.Commands.Hub
 {
     public sealed class DeleteHubCommandHandler : ICommandHandler<DeleteHubCommand, bool>
     {
-        private readonly IManagementService _managementService;
+        private readonly IHubService _hubService;
 
-        public DeleteHubCommandHandler(IManagementService managementService)
+        public DeleteHubCommandHandler(IHubService hubService)
         {
-            _managementService = managementService ?? throw new ArgumentNullException(nameof(managementService));
+            _hubService = hubService ?? throw new ArgumentNullException(nameof(hubService));
         }
 
         public async Task<bool> Handle(DeleteHubCommand command, CancellationToken cancellationToken = default)
         {
-            var hub = await _managementService.DeleteHubAsync(command.HubId, cancellationToken);
-
-            return hub;
+            return await _hubService.DeleteHubAsync(command.HubId, cancellationToken);
         }
     }
 }

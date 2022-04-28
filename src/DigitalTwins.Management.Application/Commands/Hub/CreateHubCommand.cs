@@ -15,10 +15,10 @@ namespace DigitalTwins.Management.Application.Commands.Hub
         public string ConnectionString { get; init; }
 
         [JsonPropertyName("devices")]
-        public IEnumerable<DeviceInfo> Devices { get; init; }
+        public IEnumerable<DeviceRegistration> Devices { get; init; }
 
         [JsonConstructor]
-        public CreateHubCommand(string name, string connectionString, IEnumerable<DeviceInfo> devices = null)
+        public CreateHubCommand(string name, string connectionString, IEnumerable<DeviceRegistration> devices = default)
         {
             Name = name;
             ConnectionString = connectionString;

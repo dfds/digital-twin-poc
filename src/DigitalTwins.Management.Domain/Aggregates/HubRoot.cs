@@ -10,11 +10,11 @@ namespace DigitalTwins.Management.Domain.Aggregates
 {
     public sealed class HubRoot : Entity<Guid>, IAggregateRoot
     {
-        private readonly List<DeviceInfo> _devices;
+        private readonly List<DeviceRegistration> _deviceRegistrations;
         private readonly string _name;
         private readonly string _connectionString;
 
-        public IEnumerable<DeviceInfo> Devices => _devices.AsReadOnly();
+        public IEnumerable<DeviceRegistration> DeviceRegistrations => _deviceRegistrations.AsReadOnly();
 
         public string ConnectionString => _connectionString;
 
@@ -24,35 +24,35 @@ namespace DigitalTwins.Management.Domain.Aggregates
         {
             _name = name;
             _connectionString = connectionString;
-            _devices = new List<DeviceInfo>();
+            _deviceRegistrations = new List<DeviceRegistration>();
 
             var evt = new HubCreatedEvent(this);
 
             AddDomainEvent(evt);
         }
 
-        public void AddDevice(DeviceInfo device)
+        public void AddDeviceRegistration(DeviceRegistration deviceRegistration)
         {
-            _devices.Add(device);
+            _deviceRegistrations.Add(deviceRegistration);
 
-            var evt = new DeviceAddedEvent(Id, device);
+            var evt = new HubDeviceRegisteredEvent(Id, deviceRegistration);
 
             AddDomainEvent(evt);
         }
 
-        public void AddDevice(IEnumerable<DeviceInfo> devices)
+        public void AddDeviceRegistration(IEnumerable<DeviceRegistration> devices)
         {
             foreach (var device in devices)
-            { 
-                AddDevice(device);
+            {
+                AddDeviceRegistration(device);
             }
         }
 
-        public void RemoveDevice(DeviceInfo device)
+        public void RemoveDeviceRegistration(DeviceRegistration deviceRegistration)
         {
-            _devices.Remove(device);
+            _deviceRegistrations.Remove(deviceRegistration);
 
-            var evt = new DeviceRemovedEvent(Id, device);
+            var evt = new HubDeviceUnregisteredEvent(Id, deviceRegistration);
 
             AddDomainEvent(evt);
         }

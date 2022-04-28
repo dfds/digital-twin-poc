@@ -8,6 +8,19 @@ namespace Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Devices",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ConnectionString = table.Column<string>(type: "text", nullable: true),
+                    DeviceIdentifier = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Devices", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Hubs",
                 columns: table => new
                 {
@@ -21,19 +34,19 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Devices",
+                name: "DeviceRegistration",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    DeviceId = table.Column<string>(type: "text", nullable: false),
+                    DeviceIdentifier = table.Column<string>(type: "text", nullable: false),
                     ConnectionString = table.Column<string>(type: "text", nullable: false),
                     OwnerId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Devices", x => x.Id);
+                    table.PrimaryKey("PK_DeviceRegistration", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Devices_Hubs_OwnerId",
+                        name: "FK_DeviceRegistration_Hubs_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "Hubs",
                         principalColumn: "Id",
@@ -41,13 +54,28 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Devices_OwnerId",
-                table: "Devices",
+                name: "IX_DeviceRegistration_DeviceIdentifier",
+                table: "DeviceRegistration",
+                column: "DeviceIdentifier",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeviceRegistration_OwnerId",
+                table: "DeviceRegistration",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Devices_DeviceIdentifier",
+                table: "Devices",
+                column: "DeviceIdentifier",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "DeviceRegistration");
+
             migrationBuilder.DropTable(
                 name: "Devices");
 
